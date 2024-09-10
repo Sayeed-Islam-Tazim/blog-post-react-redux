@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { addPost } from "./postSlice";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddPostForm = () => {
   const dispatch = useDispatch();
+  // toast.configure();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -16,6 +19,8 @@ const AddPostForm = () => {
       dispatch(addPost(title, content));
       setTitle("");
       setContent("");
+    } else {
+      toast.error("Title or Content must be empty!");
     }
   };
 
@@ -42,6 +47,7 @@ const AddPostForm = () => {
           Save Post
         </button>
       </form>
+      <ToastContainer />
     </section>
   );
 };

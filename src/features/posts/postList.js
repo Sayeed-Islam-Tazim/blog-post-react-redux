@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectAllPosts } from "./postSlice";
 import React from "react";
+import PostAuthor from "./postAuthor";
 
 const PostList = () => {
   const posts = useSelector(selectAllPosts);
@@ -10,6 +11,9 @@ const PostList = () => {
       <article key={post.id}>
         <h3>{post.title}</h3>
         <p>{post.content.substring(0, 100)}</p>
+        <p className="">
+          - <PostAuthor userId={post.userId} />
+        </p>
       </article>
     );
   });
